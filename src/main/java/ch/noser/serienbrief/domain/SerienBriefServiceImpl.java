@@ -18,14 +18,6 @@ import static java.util.stream.Collectors.toList;
  */
 public class SerienBriefServiceImpl {
 
-    /**
-     * Template: schule.eltern.gespraech.gut
-     * Hallo {{Eltern.Nachname}}
-     *
-     * Ihr Kind {{SuS.Vorname}} hat ...
-     *
-     *
-     */
     public static final String SUS_NAME = "SuS.Vorname";
     public static final String KLASSE_ID = "Klasse.Id";
     public static final String LEHRER_NAME = "Lehrer.Name";
