@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import static ch.noser.serienbrief.api.SerienBriefType.*;
+import static java.util.stream.Collectors.toList;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -82,11 +84,15 @@ public class SerienBriefServiceTest {
         List<SerienBrief> briefe = testee.createInformationsAbend();
         assertEquals(briefe.size(), 5);
 
-        assertEquals(briefe.get(0).getValue("Eltern.Nachname"), "Furt");
-        assertEquals(briefe.get(1).getValue("Eltern.Nachname"), "Rasur");
-        assertEquals(briefe.get(2).getValue("Eltern.Nachname"), "Imal");
-        assertEquals(briefe.get(3).getValue("Eltern.Nachname"), "Fuk");
-        assertEquals(briefe.get(4).getValue("Eltern.Nachname"), "Gang");
+        List<String> names = briefe.stream()
+                                   .map(b -> b.getValue("Eltern.Nachname"))
+                                   .collect(toList());
+
+        assertTrue(names.contains("Furt"));
+        assertTrue(names.contains("Rasur"));
+        assertTrue(names.contains("Imal"));
+        assertTrue(names.contains("Fuk"));
+        assertTrue(names.contains("Gang"));
     }
 
 }
